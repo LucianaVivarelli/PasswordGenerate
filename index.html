@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Cormorant+SC:wght@700&family=DM+Sans:ital,wght@1,700&family=Diphylleia&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700;1,800&family=Poltawski+Nowy:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Password Generator</title>
+  </head>
+  <body>
+    <main>
+      <section class="container-titles">
+        <h1 class="title">Gerador de Senha</h1>
+        <p class="sub-title">
+          Utilize o gerador online para criar uma senha forte, única e segura de forma aleatória
+        </p>
+      </section>
+
+      <section class="box">
+        <div class="password">
+          <div class="text">
+            <input
+              type="text"
+              name="password" 
+              id="password" />
+          </div>
+          
+          <div class="actions">
+            <button id="copy-icon">
+              <img src="copy.svg" alt="">
+            </button>
+            <button id="reset"><img src="renew.svg" alt=""></button>
+          </div>
+        </div>
+        <div class="security-indicator">
+          <div id="security-indicator-bar" class="bar" style="width: 90%"></div>
+        </div>
+      </section>
+      <section class="box customize">
+        <h3 class="title">Personalizar</h3>
+        <div class="actions">
+          <div class="password-length">
+            <p>Tamanho: <span id="password-length-text">16</span></p>
+            <input
+              type="range"
+              name="password-length"
+              id="password-length"
+              class="slider"
+              value="16"
+              min="4"
+              max="64"
+            />
+          </div>
+          <div class="config">
+            <label class="checkbox-container">
+              <span class="text">Maiúsculas</span>
+              <input type="checkbox" id="uppercase-check" checked />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+              <span class="text">Números</span>
+              <input type="checkbox" id="number-check" checked />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+              <span class="text">Símbolos</span>
+              <input type="checkbox" id="symbol-check" checked />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+      <div class="submit">
+        <button id="copy">Copiar a senha</button>
+      </div>
+
+      
+    </main>
+    <script>
+      
+      const inputEl = document.querySelector("#password")
+      const upperCaseCheckEl = document.querySelector("#uppercase-check")
+      const numberCheckEl = document.querySelector("#number-check")
+      const symbolCheckEl = document.querySelector("#symbol-check")
+
+      let passwordLength = 16;
+
+      function generatePassword() {
+        let chars = "abcdefghjkmnpqrstuvwxyz"
+
+        const upperCaseChars = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+        const numberChars = "123456789"
+        const symbolChars = "?!@&*()[]"
+
+        if (upperCaseCheckEl.checked) {
+          chars += upperCaseChars
+        }
+
+        if (numberCheckEl.checked) {
+          chars += numberChars
+        }
+
+        if (symbolCheckEl.checked) {
+          chars += symbolChars
+        }
+
+        let password = "";
+
+        // usaremos o for para trazer o valor total de chars de forma randomica
+        for (let i = 0; i < passwordLength; i++) {
+          const randomNumber = Math.floor(Math.random() * chars.length);
+          password += chars.substring(randomNumber, randomNumber + 1);
+        }
+
+        inputEl.value = password;
+      }
+      function copy() {
+        navigator.clipboard.writeText(inputEl.value);
+      }
+
+      const passwordLengthEl = document.querySelector("#password-length");
+      passwordLengthEl.addEventListener("input", function () {
+        passwordLength = passwordLengthEl.value;
+        generatePassword();
+      });
+
+      upperCaseCheckEl.addEventListener("click", generatePassword)
+      numberCheckEl.addEventListener("click", generatePassword)
+      symbolCheckEl.addEventListener("click", generatePassword)
+
+      document.querySelector("#copy-icon").addEventListener("click", copy);
+      document.querySelector("#copy").addEventListener("click", copy);
+
+      generatePassword();
+      // O passwordLength tem o 16 como valor inicial do gerador. para auterar a quant de chars é só mexer no range
+    </script>
+  </body>
+</html>
