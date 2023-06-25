@@ -79,7 +79,9 @@ main {
   transition: opacity 0.2s;
 }
 .security-indicator {
+  width:80%;
   height: 10px;
+  margin-left: 5.5rem;
   background-color: #ddd;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
