@@ -128,15 +128,37 @@
 
         const percent = Math.round(
           (passwordLength / 64) * 25 + 
-            (upperCaseCheckEl.checked ? 15 : 0) +
+            (upperCaseCheckEl.checked ? 20 : 0) +
             (numberCheckEl.checked ? 25 : 0) +
-            (symbolCheckEl.checked ? 35 : 0)
+            (symbolCheckEl.checked ? 30 : 0)
         )
 
         securityIndicatorBarEl.style.width = `${percent}%`
 
+        if (percent > 69) {
+          // safe
+          securityIndicatorBarEl.classList.add("safe")
+          securityIndicatorBarEl.classList.remove("warning")
+          securityIndicatorBarEl.classList.remove("critical")
+          
+          
+        } else if (percent > 50) {
+          // warning
+          securityIndicatorBarEl.classList.add("warning")
+          securityIndicatorBarEl.classList.remove("safe")
+          securityIndicatorBarEl.classList.remove("critical")
+          
+        } else {
+          // critical
+          securityIndicatorBarEl.classList.add("critical")
+          securityIndicatorBarEl.classList.remove("safe")
+          securityIndicatorBarEl.classList.remove("warning")
+          
+        }
       }
 
+
+      
       function copy() {
         navigator.clipboard.writeText(inputEl.value);
       }
