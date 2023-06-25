@@ -122,6 +122,7 @@
 
         inputEl.value = password;
         calculateQuality()
+        calculateFontSize()
       }
 
       function calculateQuality() {
@@ -155,6 +156,31 @@
           securityIndicatorBarEl.classList.remove("warning")
           
         }
+        if (percent >= 100) {
+          securityIndicatorBarEl.classList.add("completed")
+        } else {
+          securityIndicatorBarEl.classList.remove("completed")
+        }
+      }
+
+      function calculateFontSize() {
+        if (passwordLength > 40) {
+          inputEl.classList.remove("font-sm")
+          inputEl.classList.remove("font-xs")
+          inputEl.classList.add("font-xxs")
+        } else if (passwordLength > 30) {
+          inputEl.classList.remove("font-sm")
+          inputEl.classList.add("font-xs")
+          inputEl.classList.remove("font-xxs")
+        } else if (passwordLength > 17) {
+          inputEl.classList.add("font-sm")
+          inputEl.classList.remove("font-xs")
+          inputEl.classList.remove("font-xxs")
+        } else {
+          inputEl.classList.remove("font-sm")
+          inputEl.classList.remove("font-xs")
+          inputEl.classList.remove("font-xxs")
+        }
       }
 
 
@@ -175,6 +201,7 @@
       symbolCheckEl.addEventListener("click", generatePassword)
 
       document.querySelector("#copy-icon").addEventListener("click", copy);
+      document.querySelector("#reset").addEventListener("click", generatePassword);
       document.querySelector("#copy").addEventListener("click", copy);
 
       generatePassword();

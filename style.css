@@ -2,6 +2,7 @@
   --cor-fundos: #605e624a;
   --white: #ffff;
   --p-color: #827d84;
+  --titles:rgba(91, 75, 55, 0.661);
 }
 
 * {
@@ -17,7 +18,7 @@ main {
   width: 100%;
   text-align: center;
   position: absolute;
-  top: 20%;
+  top: 15%;
   bottom: 50%;
 }
 .container-titles {
@@ -26,12 +27,12 @@ main {
 }
 
 .container-titles .title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: "DM Sans", sans-serif;
   font-weight: oblique 900;
   text-shadow: 2px 2px 1px rgba(249, 248, 247, 0.591);
-  padding: 0 0 1rem;
-  color: rgba(91, 75, 55, 0.661);
+  padding: 0 0 2.5rem;
+  color:var(--titles);
 }
 
 .container-titles .sub-title {
@@ -40,6 +41,7 @@ main {
   font-weight: 700;
   letter-spacing: 0.3rem;
   color: var(--p-color);
+  
 }
 
 .box {
@@ -58,7 +60,7 @@ main {
 }
 .password .text input {
   font-family: "Inconsolata", serif;
-  font-size: 3rem;
+  font-size: 2rem;
   background-color: transparent;
   border: none;
   outline: none;
@@ -71,6 +73,15 @@ main {
   -ms-user-select: none;
   user-select: none;
 }
+.password .text input.font-sm {
+  font-size: 1.8rem;
+}
+.password .text input.font-xs {
+  font-size: 1.5rem;
+}
+.password .text input.font-xxs {
+  font-size: 1rem;
+}
 .password .actions button {
   background-color: transparent;
   border: none;
@@ -81,7 +92,7 @@ main {
 .security-indicator {
   width:80%;
   height: 10px;
-  margin-left: 5.5rem;
+  margin-left: 1.5rem;
   background-color: #ddd;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -111,11 +122,14 @@ main {
   padding: 1rem 1.5rem;
 }
 .customize .title {
+  color:var(--titles);
+  text-shadow: 2px 2px 1px rgba(249, 248, 247, 0.591);
+  padding: 0 0 2rem;
   border-bottom: 1px solid #f0f0f0;
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 2rem;
-  padding-bottom: 0.75rem;
+  
 }
 .customize .actions {
   display: flex;
@@ -131,7 +145,7 @@ main {
   background: #dddddd;
   outline: none;
   border-radius: 8px;
-  width: 20rem;
+  width: 12rem;
   opacity: 0.7;
   transition: opacity 0.2s;
   margin-top: 1rem;
@@ -222,4 +236,25 @@ main {
 }
 .submit button:hover{
     background-color:rgb(82, 54, 2);
+}
+
+@media only screen and (max-width: 480px) {
+  .password {
+    padding: 1rem;
+  }
+  .password .text input {
+    font-size: 1.5rem;
+  }
+  .password .text input.font-sm {
+    font-size: 1.2rem;
+  }
+  .password .text input.font-xs {
+    font-size: 1rem;
+  }
+  .password .text input.font-xxs {
+    font-size: 1rem;
+  }
+  .password .actions img {
+    width: 24px;
+  }
 }
